@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "A simple package to see the OS infos!",
   "bin": "./info-system.js",
+  "preferGlobal": true,
+  "repository": "https://github.com/Juniordell/info-system",
   "keywords": [
     "terminal",
     "info",
