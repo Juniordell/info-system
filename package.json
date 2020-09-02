@@ -1,0 +1,24 @@
+{
+  "name": "info-system",
+  "version": "1.0.0",
+  "description": "A simple package to see the OS infos!",
+  "bin": "./info-system.js",
+  "keywords": [
+    "terminal",
+    "info",
+    "os",
+    "cpu",
+    "detail",
+    "memory"
+  ],
+  "author": {
+    "name": "Nelson Junior",
+    "email": "nelson.dellosbel@edu.pucrs.br"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bytes": "^3.1.0",
+    "chalk": "^4.1.0",
+    "cli-table3": "^0.6.0"
+  }
+}
