@@ -2,7 +2,7 @@
 const program = require("commander");
 const showInfos = require("./index");
 
-program.version("2.0.0").description("Show OS infos");
+program.version("2.0.1").description("Show OS infos");
 
 program
   .command("show")
