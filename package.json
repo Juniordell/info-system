@@ -1,8 +1,8 @@
 {
   "name": "info-system",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple package to see the OS infos!",
-  "bin": "./info-system.js",
+  "bin": "./commands.js",
   "preferGlobal": true,
   "repository": "https://github.com/Juniordell/info-system",
   "keywords": [
@@ -21,6 +21,7 @@
   "dependencies": {
     "bytes": "^3.1.0",
     "chalk": "^4.1.0",
-    "cli-table3": "^0.6.0"
+    "cli-table3": "^0.6.0",
+    "commander": "^6.1.0"
   }
 }

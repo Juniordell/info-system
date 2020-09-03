@@ -44,4 +44,8 @@ table.push(
   ["Processor Speed", chalk.rgb(53, 198, 21)(formattedSpeed)]
 );
 
-console.log(table.toString());
+function showInfos() {
+  console.log(table.toString());
+}
+
+module.exports = showInfos;
