@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const program = require("commander");
-const showInfos = require("./info-system");
+const showInfos = require(".");
 
-program.version("1.0.1").description("Show OS infos");
+program.version("1.1.0").description("Show OS infos");
 
 program
   .command("show")
