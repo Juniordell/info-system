@@ -1,13 +1,23 @@
 #!/usr/bin/env node
 const program = require("commander");
-const showInfos = require("./index");
+const { showInfos, showMem, showProcessor, showOS } = require("./index");
 
-program.version("2.0.1").description("Show OS infos");
+program.version("2.0.2").description("show OS infos");
 
 program
-  .command("show")
-  .alias("s")
+  .option("-m, --memory", "show only the memory info", showMem)
+  .option("-p, --processor", "show only the memory info", showProcessor)
+  .option("-os, --operational", "show only the memory info", showOS)
   .description("show os infos")
-  .action(showInfos);
+  .action(() => {
+    if (
+      !program.opts().memory &&
+      !program.opts().all &&
+      !program.opts().processor &&
+      !program.opts().operational
+    ) {
+      showInfos();
+    }
+  });
 
 program.parse(process.argv);

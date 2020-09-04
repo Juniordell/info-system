@@ -1,6 +1,6 @@
 {
   "name": "info-system",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A simple package to see the OS infos!",
   "main": "index.js",
   "preferGlobal": true,
@@ -12,7 +12,9 @@
     "os",
     "cpu",
     "detail",
-    "memory"
+    "memory",
+    "system",
+    "system info"
   ],
   "author": {
     "name": "Nelson Junior",
