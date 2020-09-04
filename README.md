@@ -10,16 +10,54 @@ $ npm i info-system
 
 # Usage
 
-<p>Currently have just a simple command line:</p>
+<p>Currently have just a few commands line:</p>
+
+To show all infos
 
 ```
-$ info-system show
+$ info-system
 ```
 
-or, write with a shortcut
+<hr>
+
+Show only memory infos
 
 ```
-$ info-system s
+$ info-system --memory
+```
+
+or
+
+```
+$ info-system -m
+```
+
+<hr>
+
+Show only processor infos
+
+```
+$ info-system --processor
+```
+
+or
+
+```
+$ info-system -p
+```
+
+<hr>
+
+Show only OS infos
+
+```
+$ info-system --operational
+```
+
+or
+
+```
+$ info-system -os
 ```
 
 <br />
