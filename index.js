@@ -1,27 +1,34 @@
 const os = require("os");
 const chalk = require("chalk");
 const Table = require("cli-table3");
+const cliSpinners = require("cli-spinners");
+const ora = require("ora");
 const hourToString = require("./calc/uptime");
-const { totalMem, freeMem } = require("./calc/memory");
+const {
+  totalDiskMem,
+  freeDiskMem,
+  totalRAMMem,
+  freeRAMMem,
+} = require("./calc/memory");
 const formattedSpeed = require("./calc/speed");
 
 const table = new Table({
-  head: ["Info", "Results"],
+  head: ["Infos", "Results"],
   colWidths: [25, 37],
 });
 
 const tableMem = new Table({
-  head: ["Info", "Results"],
+  head: ["Infos", "Results"],
   colWidths: [25, 37],
 });
 
 const tableProcessor = new Table({
-  head: ["Info", "Results"],
+  head: ["Infos", "Results"],
   colWidths: [25, 37],
 });
 
 const tableOS = new Table({
-  head: ["Info", "Results"],
+  head: ["Infos", "Results"],
   colWidths: [25, 37],
 });
 
@@ -45,46 +52,104 @@ switch (os.platform()) {
     break;
 }
 
-table.push(
-  ["Total Memory", chalk.blue(totalMem)],
-  ["Free Memory", chalk.greenBright(freeMem)],
-  ["Host Name", chalk.yellow(os.hostname())],
-  ["Platform", chalk.blueBright(platform)],
-  ["OS Architecture", chalk.magentaBright(os.arch())],
-  ["OS Type", chalk.cyanBright(os.type())],
-  ["System Uptime", chalk.redBright(hourToString)],
-  ["Processor", chalk.rgb(290, 133, 57)(os.cpus()[0].model.trim())],
-  ["Processor Speed", chalk.rgb(53, 198, 21)(formattedSpeed)]
-);
+async function showInfos() {
+  const spinner = new ora({
+    text: "Fetching your System Data",
+    spinner: cliSpinners.random,
+  });
 
-tableMem.push(
-  ["Total Memory", chalk.blue(totalMem)],
-  ["Free Memory", chalk.greenBright(freeMem)]
-);
+  spinner.start();
 
-tableProcessor.push(
-  ["Processor", chalk.rgb(290, 133, 57)(os.cpus()[0].model.trim())],
-  ["Processor Speed", chalk.rgb(53, 198, 21)(formattedSpeed)]
-);
+  setTimeout(() => {
+    spinner.color = "blue";
+    spinner.text = "Successfully Fetched the System Data";
+  }, 2000);
 
-tableOS.push(
-  ["OS Architecture", chalk.magentaBright(os.arch())],
-  ["OS Type", chalk.cyanBright(os.type())]
-);
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    spinner.stop();
+    totalDiskMem
+      .then((result) => {
+        table.push(["Total Disk Memory", chalk.red(result)]);
 
-function showInfos() {
-  console.log(table.toString());
+        freeDiskMem
+          .then((result) => {
+            table.push(
+              ["Free Disk Memory", chalk.green(result)],
+              ["Total RAM Memory", chalk.blue(totalRAMMem)],
+              ["Free RAM Memory", chalk.greenBright(freeRAMMem)],
+              ["Host Name", chalk.yellow(os.hostname())],
+              ["Platform", chalk.blueBright(platform)],
+              ["OS Architecture", chalk.magentaBright(os.arch())],
+              ["OS Type", chalk.cyanBright(os.type())],
+              ["System Uptime", chalk.redBright(hourToString)],
+              ["Processor", chalk.rgb(290, 133, 57)(os.cpus()[0].model.trim())],
+              ["Processor Speed", chalk.rgb(53, 198, 21)(formattedSpeed)],
+              ["Cores", chalk.red(os.cpus().length)]
+            );
+            console.log(table.toString());
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+  } catch (err) {
+    spinner.stop();
+    console.log(err);
+  }
 }
 
-function showMem() {
-  console.log(tableMem.toString());
+async function showMem() {
+  const spinner = new ora({
+    text: "Fetching your System Data",
+    spinner: cliSpinners.random,
+  });
+
+  spinner.start();
+
+  setTimeout(() => {
+    spinner.color = "blue";
+    spinner.text = "Successfully Fetched the System Data";
+  }, 2000);
+
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    spinner.stop();
+    totalDiskMem
+      .then((result) => {
+        tableMem.push(["Total Disk Memory", chalk.red(result)]);
+
+        freeDiskMem
+          .then((result) => {
+            tableMem.push(
+              ["Free Disk Memory", chalk.green(result)],
+              ["Total RAM Memory", chalk.blue(totalRAMMem)],
+              ["Free RAM Memory", chalk.greenBright(freeRAMMem)]
+            );
+            console.log(tableMem.toString());
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+  } catch (err) {
+    spinner.stop();
+    console.log(err);
+  }
 }
 
 function showProcessor() {
+  tableProcessor.push(
+    ["Processor", chalk.rgb(290, 133, 57)(os.cpus()[0].model.trim())],
+    ["Processor Speed", chalk.rgb(53, 198, 21)(formattedSpeed)],
+    ["Cores", chalk.red(os.cpus().length)]
+  );
   console.log(tableProcessor.toString());
 }
 
 function showOS() {
+  tableOS.push(
+    ["OS Architecture", chalk.magentaBright(os.arch())],
+    ["OS Type", chalk.cyanBright(os.type())]
+  );
   console.log(tableOS.toString());
 }
 
@@ -93,4 +158,5 @@ module.exports = {
   showMem,
   showProcessor,
   showOS,
+  showMem,
 };

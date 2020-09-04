@@ -1,6 +1,6 @@
 {
   "name": "info-system",
-  "version": "2.0.2",
+  "version": "2.0.4",
   "description": "A simple package to see the OS infos!",
   "main": "index.js",
   "preferGlobal": true,
@@ -24,7 +24,11 @@
   "dependencies": {
     "bytes": "^3.1.0",
     "chalk": "^4.1.0",
+    "cli-spinners": "^2.4.0",
     "cli-table3": "^0.6.0",
-    "commander": "^6.1.0"
+    "commander": "^6.1.0",
+    "mysystem-info": "^1.0.4",
+    "ora": "^5.0.0",
+    "systeminformation": "^4.27.3"
   }
 }

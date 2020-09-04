@@ -2,12 +2,12 @@
 const program = require("commander");
 const { showInfos, showMem, showProcessor, showOS } = require("./index");
 
-program.version("2.0.2").description("show OS infos");
+program.version("2.0.4").description("show OS infos");
 
 program
-  .option("-m, --memory", "show only the memory info", showMem)
-  .option("-p, --processor", "show only the memory info", showProcessor)
-  .option("-os, --operational", "show only the memory info", showOS)
+  .option("-m, --memory", "show only the memory infos", showMem)
+  .option("-p, --processor", "show only the processor infos", showProcessor)
+  .option("-os, --operational", "show only the OS infos", showOS)
   .description("show os infos")
   .action(() => {
     if (
