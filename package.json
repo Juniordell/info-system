@@ -1,6 +1,6 @@
 {
   "name": "info-system",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "A simple package to see the OS infos!",
   "main": "index.js",
   "preferGlobal": true,
@@ -30,5 +30,10 @@
     "mysystem-info": "^1.0.4",
     "ora": "^5.0.0",
     "systeminformation": "^4.27.3"
-  }
+  },
+  "files": [
+    "index.js",
+    "commands.js",
+    "/calc"
+  ]
 }
