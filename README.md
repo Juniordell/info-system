@@ -5,7 +5,7 @@
 # Install
 
 ```node
-$ npm i info-system
+$ npm i info-system -g
 ```
 
 # Usage
