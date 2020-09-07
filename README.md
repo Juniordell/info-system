@@ -14,7 +14,7 @@ $ npm i info-system
 
 To show all infos
 
-```
+```node
 $ info-system
 ```
 
@@ -22,13 +22,13 @@ $ info-system
 
 Show only memory infos
 
-```
+```node
 $ info-system --memory
 ```
 
 or
 
-```
+```node
 $ info-system -m
 ```
 
@@ -36,13 +36,13 @@ $ info-system -m
 
 Show only processor infos
 
-```
+```node
 $ info-system --processor
 ```
 
 or
 
-```
+```node
 $ info-system -p
 ```
 
@@ -50,13 +50,13 @@ $ info-system -p
 
 Show only OS infos
 
-```
+```node
 $ info-system --operational
 ```
 
 or
 
-```
+```node
 $ info-system -os
 ```
 

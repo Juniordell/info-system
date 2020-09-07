@@ -1,6 +1,6 @@
 {
   "name": "info-system",
-  "version": "2.0.5",
+  "version": "2.1.0",
   "description": "A simple package to see the OS infos!",
   "main": "index.js",
   "preferGlobal": true,

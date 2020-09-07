@@ -70,24 +70,27 @@ async function showInfos() {
     spinner.stop();
     totalDiskMem
       .then((result) => {
-        table.push(["Total Disk Memory", chalk.red(result)]);
+        tableMem.push(["Total Disk Memory", chalk.blueBright(result)]);
 
         freeDiskMem
           .then((result) => {
-            table.push(
-              ["Free Disk Memory", chalk.green(result)],
-              ["Total RAM Memory", chalk.blue(totalRAMMem)],
-              ["Free RAM Memory", chalk.greenBright(freeRAMMem)],
-              ["Host Name", chalk.yellow(os.hostname())],
-              ["Platform", chalk.blueBright(platform)],
-              ["OS Architecture", chalk.magentaBright(os.arch())],
-              ["OS Type", chalk.cyanBright(os.type())],
-              ["System Uptime", chalk.redBright(hourToString)],
-              ["Processor", chalk.rgb(290, 133, 57)(os.cpus()[0].model.trim())],
-              ["Processor Speed", chalk.rgb(53, 198, 21)(formattedSpeed)],
-              ["Cores", chalk.red(os.cpus().length)]
+            tableMem.push(
+              ["Free Disk Memory", chalk.greenBright(result)],
+              ["Total RAM Memory", chalk.blueBright(totalRAMMem)],
+              ["Free RAM Memory", chalk.greenBright(freeRAMMem)]
             );
-            console.log(table.toString());
+
+            console.log();
+            console.log(chalk.bold(">>> Memory Infos <<<"));
+            console.log(tableMem.toString());
+
+            console.log();
+            console.log(chalk.bold(">>> Processor Infos <<<"));
+            showProcessor();
+
+            console.log();
+            console.log(chalk.bold(">>> OS Infos <<<"));
+            showOS();
           })
           .catch((err) => console.log(err));
       })
@@ -116,13 +119,13 @@ async function showMem() {
     spinner.stop();
     totalDiskMem
       .then((result) => {
-        tableMem.push(["Total Disk Memory", chalk.red(result)]);
+        tableMem.push(["Total Disk Memory", chalk.blueBright(result)]);
 
         freeDiskMem
           .then((result) => {
             tableMem.push(
-              ["Free Disk Memory", chalk.green(result)],
-              ["Total RAM Memory", chalk.blue(totalRAMMem)],
+              ["Free Disk Memory", chalk.greenBright(result)],
+              ["Total RAM Memory", chalk.blueBright(totalRAMMem)],
               ["Free RAM Memory", chalk.greenBright(freeRAMMem)]
             );
             console.log(tableMem.toString());
@@ -139,16 +142,19 @@ async function showMem() {
 function showProcessor() {
   tableProcessor.push(
     ["Processor", chalk.rgb(290, 133, 57)(os.cpus()[0].model.trim())],
-    ["Processor Speed", chalk.rgb(53, 198, 21)(formattedSpeed)],
-    ["Cores", chalk.red(os.cpus().length)]
+    ["Processor Speed", chalk.rgb(290, 133, 57)(formattedSpeed)],
+    ["Cores", chalk.rgb(290, 133, 57)(os.cpus().length)]
   );
   console.log(tableProcessor.toString());
 }
 
 function showOS() {
   tableOS.push(
-    ["OS Architecture", chalk.magentaBright(os.arch())],
-    ["OS Type", chalk.cyanBright(os.type())]
+    ["Host Name", chalk.yellow(os.hostname())],
+    ["Platform", chalk.yellowBright(platform)],
+    ["OS Architecture", chalk.yellowBright(os.arch())],
+    ["OS Type", chalk.yellowBright(os.type())],
+    ["System Uptime", chalk.yellowBright(hourToString)]
   );
   console.log(tableOS.toString());
 }
