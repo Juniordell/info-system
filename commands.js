@@ -2,7 +2,7 @@
 const program = require("commander");
 const { showInfos, showMem, showProcessor, showOS } = require("./index");
 
-program.version("2.1.1").description("show OS infos");
+program.version("2.1.2").description("show OS infos");
 
 program
   .option("-m, --memory", "show only the memory infos", showMem)
