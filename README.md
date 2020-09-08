@@ -5,11 +5,7 @@
 # Install
 
 ```node
-<<<<<<< HEAD
 $ npm i -g info-system
-=======
-$ npm i info-system -g
->>>>>>> c5ede0934f7488e1ba515c9a82340bd9a72e204f
 ```
 
 # Usage
