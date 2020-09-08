@@ -11,11 +11,9 @@ const {
   freeRAMMem,
 } = require("./calc/memory");
 const formattedSpeed = require("./calc/speed");
+const moment = require("moment");
 
-const table = new Table({
-  head: ["Infos", "Results"],
-  colWidths: [25, 37],
-});
+const now = moment().format("MMMM Do YYYY, h:mm:ss a");
 
 const tableMem = new Table({
   head: ["Infos", "Results"],
@@ -31,6 +29,10 @@ const tableOS = new Table({
   head: ["Infos", "Results"],
   colWidths: [25, 37],
 });
+
+function log(any = "") {
+  console.log(any);
+}
 
 let platform;
 
@@ -80,24 +82,32 @@ async function showInfos() {
               ["Free RAM Memory", chalk.greenBright(freeRAMMem)]
             );
 
-            console.log();
-            console.log(chalk.bold(">>> Memory Infos <<<"));
-            console.log(tableMem.toString());
+            log();
+            log("=".repeat(65));
+            log();
+            log(" ".repeat(15) + chalk.greenBright(now));
+            log();
+            log("=".repeat(65));
+            log();
 
-            console.log();
-            console.log(chalk.bold(">>> Processor Infos <<<"));
+            log();
+            log(chalk.bold("                    >>> Memory Infos <<<       "));
+            log("             ──────────────────────────────────");
+            log(tableMem.toString());
+
+            log();
+
             showProcessor();
 
-            console.log();
-            console.log(chalk.bold(">>> OS Infos <<<"));
+            log();
             showOS();
           })
-          .catch((err) => console.log(err));
+          .catch((err) => log(err));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => log(err));
   } catch (err) {
     spinner.stop();
-    console.log(err);
+    log(err);
   }
 }
 
@@ -128,14 +138,17 @@ async function showMem() {
               ["Total RAM Memory", chalk.blueBright(totalRAMMem)],
               ["Free RAM Memory", chalk.greenBright(freeRAMMem)]
             );
-            console.log(tableMem.toString());
+            log();
+            log(chalk.bold("                    >>> Memory Infos <<<       "));
+            log("             ──────────────────────────────────");
+            log(tableMem.toString());
           })
-          .catch((err) => console.log(err));
+          .catch((err) => log(err));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => log(err));
   } catch (err) {
     spinner.stop();
-    console.log(err);
+    log(err);
   }
 }
 
@@ -145,7 +158,10 @@ function showProcessor() {
     ["Processor Speed", chalk.rgb(290, 133, 57)(formattedSpeed)],
     ["Cores", chalk.rgb(290, 133, 57)(os.cpus().length)]
   );
-  console.log(tableProcessor.toString());
+  log();
+  log(chalk.bold("                  >>> Processor Infos <<<     "));
+  log("             ─────────────────────────────────");
+  log(tableProcessor.toString());
 }
 
 function showOS() {
@@ -156,7 +172,10 @@ function showOS() {
     ["OS Type", chalk.yellowBright(os.type())],
     ["System Uptime", chalk.yellowBright(hourToString)]
   );
-  console.log(tableOS.toString());
+  log();
+  log(chalk.bold("                     >>> OS Infos <<<        "));
+  log("             ────────────────────────────────");
+  log(tableOS.toString());
 }
 
 module.exports = {

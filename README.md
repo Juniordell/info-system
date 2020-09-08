@@ -5,7 +5,7 @@
 # Install
 
 ```node
-$ npm i info-system
+$ npm i -g info-system
 ```
 
 # Usage
@@ -67,3 +67,10 @@ $ info-system -os
 <br />
 
 <img src='./assets/info-system.gif' />
+
+<br />
+<br />
+
+## 🐛 Bug Report
+
+If you find an issue, report here <https://github.com/Juniordell/info-system/issues>, you'll help a lot!
